@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Morning Belle Leaf Race</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style id="css">
+:root{
+  --bg:#f5f9ef; --panel:#ffffff; --ink:#3c5c68; --text:#4d4d4d; --muted:#6f7c80;
+  --line:#dfe8d6; --green:#99c961; --green-deep:#7aa847; --leaf-empty:#e3efd4; --field:#ffffff;
+  --coral:#fc826d; --teal:#3c5c68; --amber:#fbaf41; --sage:#9bc4bc; --yellow:#ffde5c;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1d2b30; --panel:#26383f; --ink:#e7f0e0; --text:#d9e2dc; --muted:#9fb0b2;
+    --line:#35505a; --green-deep:#b6dc87; --leaf-empty:#2c4436; --field:#1f3036; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1d2b30; --panel:#26383f; --ink:#e7f0e0; --text:#d9e2dc; --muted:#9fb0b2;
+  --line:#35505a; --green-deep:#b6dc87; --leaf-empty:#2c4436; --field:#1f3036; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Figtree","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:1000px;margin:0 auto;padding:2rem 1.25rem 3rem}
+.top{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:2rem;align-items:center}
+@media (max-width:760px){.top{grid-template-columns:1fr;gap:1rem}}
+.brand{color:var(--green-deep);font-weight:700;letter-spacing:.02em}
+h1{font-family:"DM Serif Display",Georgia,serif;font-weight:400;color:var(--ink);font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.02;margin:.4rem 0 .8rem}
+.lede{max-width:44ch;margin:0;font-size:1.05rem}
+.combined{margin:1.4rem 0 0;font-family:"DM Serif Display",Georgia,serif;color:var(--ink);font-size:2.4rem;line-height:1;font-variant-numeric:tabular-nums}
+.combined-l{margin:.3rem 0 0;color:var(--muted);font-size:.95rem}
+.banner{margin-top:1.2rem;background:var(--yellow);color:#3c5c68;border-radius:14px;padding:.85rem 1.1rem;font-weight:700}
+.leafbox{max-width:560px;width:100%;margin:0 auto}
+.leaf{width:100%;height:auto;display:block}
+.leaf-empty{fill:var(--leaf-empty)}
+.leaf-line{fill:none;stroke:var(--green-deep);stroke-width:1.2;stroke-linejoin:round}
+.bands{animation:rise 1.6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{transform:translateY(var(--d))}to{transform:none}}
+@media (prefers-reduced-motion:reduce){.bands{animation:none}}
+.lead-line{fill:none;stroke:var(--muted);stroke-width:.6}
+.lead-dot{fill:var(--ink)}
+.level-line{stroke:var(--bg);stroke-width:1.2}
+.tip-l{font:700 8px "Figtree",Arial,sans-serif;fill:var(--green-deep)}
+.lead-name{font:700 8px "Figtree",Arial,sans-serif;fill:var(--ink)}
+.lead-amt{font:600 7.5px "Figtree",Arial,sans-serif;fill:var(--muted);font-variant-numeric:tabular-nums}
+.ahead{margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1.6rem}
+.ahead h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;color:var(--ink);font-size:1.6rem;margin:0 0 1rem}
+.ahead-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;max-width:560px}
+.goal{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:16px;padding:.9rem 1.1rem}
+.goal + .goal{border-left-color:var(--amber)}
+.goal-m{margin:0;color:var(--muted);font-weight:600}
+.goal-v{margin:.1rem 0 0;font-family:"DM Serif Display",Georgia,serif;color:var(--ink);font-size:2rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.ahead-note{margin:.8rem 0 0;color:var(--muted);font-size:.95rem}
+.blocks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem;margin-top:2rem}
+@media (max-width:760px){.blocks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.block{border-radius:18px;padding:1rem 1rem 1.1rem;color:#24363d;position:relative}
+.block.c-1002{color:#fff}
+.block.won{outline:4px solid var(--yellow);outline-offset:3px}
+.block .place{font-size:.85rem;font-weight:700;opacity:.85;margin:0}
+.block h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:1.4rem;line-height:1.1;margin:.2rem 0 .3rem}
+.block .amt{font-size:1.55rem;font-weight:700;margin:0;font-variant-numeric:tabular-nums}
+.block .togo{margin:0;font-weight:600;font-size:.95rem}
+.meter{height:8px;border-radius:99px;background:rgba(255,255,255,.45);margin:.7rem 0 .55rem;overflow:hidden}
+.meter i{display:block;height:100%;background:currentColor;border-radius:99px}
+.block .split{margin:0;font-size:.88rem;opacity:.9;font-variant-numeric:tabular-nums}
+.c-1001{background:var(--coral)} .c-1002{background:var(--teal)} .c-1003{background:var(--amber)} .c-1004{background:var(--sage)}
+:root{--f-1001:#fc826d;--f-1002:#3c5c68;--f-1003:#fbaf41;--f-1004:#9bc4bc}
+section.log{margin-top:2.5rem;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:1.4rem}
+section.log h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;color:var(--ink);font-size:1.5rem;margin:0 0 1rem}
+.entry{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr auto;gap:.75rem;align-items:end}
+@media (max-width:760px){.entry{grid-template-columns:1fr 1fr}.entry .go{grid-column:1/-1}}
+label{display:block;font-size:.85rem;font-weight:600;color:var(--muted);margin-bottom:.3rem}
+select,input{width:100%;font:inherit;color:var(--text);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:.6rem .7rem;min-height:44px}
+button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:.7rem 1.3rem;min-height:44px;cursor:pointer;background:var(--green);color:#24363d}
+button:hover{filter:brightness(.96)}
+button:disabled{opacity:.6;cursor:default}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.msg{min-height:1.4em;margin:.75rem 0 0;font-size:.95rem;color:var(--coral);font-weight:600}
+.table-wrap{overflow-x:auto;margin-top:1rem}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:480px}
+th,td{text-align:left;padding:.55rem .5rem;border-bottom:1px solid var(--line)}
+th{font-size:.85rem;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right}
+.dot{display:inline-block;width:.7em;height:.7em;border-radius:50%;margin-right:.45em;vertical-align:baseline}
+.rm{background:transparent;color:var(--muted);padding:.3rem .7rem;min-height:36px;font-weight:600;border:1px solid var(--line)}
+.rm.confirm{color:#fff;background:var(--coral);border-color:var(--coral)}
+.empty{color:var(--muted);margin:.5rem 0 0}
+.sr{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="application/json" id="state">{"goal":3000,"updated":"2026-10-18","sales":[{"id":"open1001","r":"1001","type":"Opening","amt":353,"date":"2026-10-18","at":"2026-10-18T13:30:00.000Z"},{"id":"open1002","r":"1002","type":"Opening","amt":1994,"date":"2026-10-18","at":"2026-10-18T13:30:00.001Z"},{"id":"open1004","r":"1004","type":"Opening","amt":1470,"date":"2026-10-18","at":"2026-10-18T13:30:00.002Z"}]}</script>
+<script id="app">
+(function(){
+var R=[{id:"1001",name:"East Beltline",color:"#fc826d",ink:"#24363d"},{id:"1002",name:"Bridge St",color:"#3c5c68",ink:"#ffffff"},{id:"1003",name:"Breton",color:"#fbaf41",ink:"#24363d"},{id:"1004",name:"Standale",color:"#9bc4bc",ink:"#24363d"}];
+var state;
+try{state=JSON.parse(document.getElementById("state").textContent)}catch(e){state={goal:3000,sales:[]}}
+if(!Array.isArray(state.sales))state.sales=[];
+var GOAL=Number(state.goal)||3000, CAP=GOAL*R.length;
+var CSS=document.getElementById("css").textContent;
+var APP=document.getElementById("app").textContent;
+var art=null, saving=false, readOnly=false, message="", armed=null;
+var draft={r:"",type:"Catering",amt:"",date:new Date().toISOString().slice(0,10)};
+try{var kept=sessionStorage.getItem("mbLeafMsg");if(kept){message=kept;sessionStorage.removeItem("mbLeafMsg")}}catch(e){}
+
+var LEAF="M111.1 14.1 C107.9 12.1 107.1 17.6 104.2 21.0 C101.4 24.4 97.6 29.0 94.2 34.8 C90.9 40.5 86.6 49.1 84.1 55.8 C81.6 62.4 80.4 69.1 79.2 74.6 C78.1 80.1 77.4 83.1 77.2 88.6 C77.1 94.1 76.9 101.4 78.2 107.8 C79.6 114.1 81.8 120.5 85.1 126.9 C88.4 133.2 93.2 140.1 98.1 145.9 C103.1 151.7 107.6 156.2 114.9 161.6 C122.1 167.0 136.5 174.4 141.5 178.1 C146.5 181.9 144.4 182.4 144.9 184.0 C145.4 185.6 145.0 186.9 144.5 187.9 C144.0 188.9 143.8 189.9 142.1 190.0 C140.5 190.1 139.1 192.0 134.5 188.6 C129.9 185.3 120.7 174.8 114.6 170.0 C108.6 165.2 103.0 162.4 98.1 160.1 C93.2 157.8 89.3 157.0 85.2 156.1 C81.2 155.3 77.8 155.0 73.8 155.1 C69.7 155.3 65.8 155.5 61.1 157.0 C56.5 158.5 50.3 161.4 45.8 164.2 C41.2 167.1 38.9 168.8 33.9 173.9 C28.8 178.9 14.8 189.6 15.4 194.5 C16.0 199.4 29.6 199.5 37.4 203.0 C45.2 206.5 55.2 212.8 62.1 215.8 C69.0 218.7 73.9 219.9 78.8 220.8 C83.6 221.6 87.6 221.2 91.4 220.8 C95.1 220.2 97.5 219.6 101.2 217.8 C105.0 215.9 109.3 213.2 113.9 209.6 C118.5 206.0 125.3 198.6 128.9 196.0 C132.4 193.4 133.5 194.3 135.2 194.0 C137.0 193.7 137.8 193.6 139.6 194.1 C141.5 194.7 144.5 195.9 146.5 197.4 C148.5 198.8 149.9 200.4 151.8 202.8 C153.6 205.1 153.6 210.1 157.4 211.5 C161.1 212.9 174.4 214.3 174.4 211.4 C174.3 208.5 160.9 198.2 157.1 194.0 C153.4 189.8 153.0 188.1 151.9 185.9 C150.8 183.6 150.2 183.4 150.4 180.4 C150.6 177.3 150.4 173.6 153.0 167.6 C155.6 161.6 162.6 150.7 165.8 144.2 C168.9 137.8 170.2 134.2 171.6 128.9 C173.1 123.5 174.3 117.1 174.5 112.0 C174.7 106.9 173.7 102.4 172.8 98.5 C171.8 94.6 170.5 92.0 168.6 88.6 C166.8 85.2 169.2 87.2 161.8 78.0 C154.3 68.8 132.3 43.8 123.9 33.1 C115.4 22.5 114.4 16.1 111.1 14.1Z";
+var GEO={"cum":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9999,0.9997,0.9995,0.9991,0.9986,0.9981,0.9974,0.9967,0.9958,0.9949,0.9938,0.9927,0.9915,0.9902,0.9888,0.9873,0.9857,0.984,0.9823,0.9804,0.9784,0.9764,0.9743,0.972,0.9697,0.9673,0.9648,0.9623,0.9596,0.9568,0.954,0.9511,0.948,0.9449,0.9417,0.9385,0.9351,0.9317,0.9281,0.9245,0.9208,0.9171,0.9132,0.9093,0.9053,0.9012,0.897,0.8928,0.8885,0.8842,0.8797,0.8752,0.8706,0.866,0.8613,0.8565,0.8517,0.8467,0.8418,0.8367,0.8316,0.8265,0.8213,0.816,0.8107,0.8053,0.7998,0.7943,0.7888,0.7832,0.7775,0.7719,0.7661,0.7603,0.7545,0.7486,0.7427,0.7368,0.7308,0.7248,0.7188,0.7128,0.7067,0.7006,0.6945,0.6884,0.6822,0.6761,0.67,0.6638,0.6577,0.6515,0.6454,0.6392,0.6331,0.627,0.6209,0.6148,0.6087,0.6026,0.5966,0.5906,0.5846,0.5787,0.5728,0.5669,0.561,0.5552,0.5495,0.5437,0.5381,0.5324,0.5269,0.5213,0.5159,0.5104,0.5051,0.4998,0.4945,0.4893,0.4842,0.4791,0.4741,0.4692,0.4644,0.4596,0.4549,0.4502,0.4457,0.4412,0.4368,0.4325,0.4283,0.4242,0.4202,0.4162,0.4124,0.4086,0.405,0.4014,0.398,0.3941,0.3894,0.3843,0.3789,0.3734,0.3676,0.3618,0.3558,0.3497,0.3435,0.3372,0.3309,0.3246,0.3182,0.3118,0.3053,0.2989,0.2925,0.286,0.2795,0.273,0.2665,0.26,0.2534,0.2467,0.2399,0.233,0.226,0.219,0.2118,0.2045,0.197,0.1893,0.1814,0.1732,0.1645,0.1557,0.1468,0.1378,0.1291,0.1209,0.113,0.1054,0.0981,0.0911,0.0843,0.0777,0.0713,0.0651,0.0591,0.0532,0.0476,0.0421,0.0367,0.0316,0.0265,0.022,0.0185,0.0152,0.0121,0.0093,0.0068,0.0045,0.0026,0.0011,0.0001,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"right":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,111.8,112.2,112.8,113.4,113.9,114.6,115.2,115.9,116.5,117.1,117.9,118.6,119.2,120.0,120.8,121.5,122.2,123.0,123.8,124.6,125.4,126.1,126.9,127.8,128.6,129.5,130.2,131.1,132.0,132.9,133.8,134.6,135.5,136.4,137.4,138.2,139.1,140.0,140.9,141.9,142.8,143.6,144.5,145.4,146.2,147.1,148.0,148.9,149.8,150.6,151.4,152.2,153.0,153.9,154.8,155.5,156.2,157.0,157.9,158.6,159.4,160.1,160.9,161.6,162.2,163.0,163.8,164.4,165.0,165.8,166.2,166.9,167.6,168.0,168.8,169.1,169.8,170.1,170.6,171.0,171.4,171.8,172.1,172.5,172.8,173.0,173.2,173.5,173.8,173.9,174.0,174.1,174.2,174.4,174.4,174.5,174.5,174.5,174.5,174.4,174.4,174.2,174.1,174.0,174.0,173.8,173.6,173.5,173.2,173.0,172.8,172.6,172.2,172.0,171.8,171.5,171.1,170.9,170.6,170.2,170.0,169.6,169.2,168.9,168.5,168.0,167.6,167.1,166.8,166.2,165.8,165.2,164.8,164.1,163.8,163.1,162.6,162.0,161.5,160.9,160.2,159.8,159.1,158.6,158.0,157.5,156.9,156.4,155.9,155.2,154.9,154.2,153.9,153.4,152.9,152.6,152.1,151.9,151.5,151.1,150.9,150.8,150.6,150.5,150.4,150.4,150.5,150.6,150.9,151.1,151.6,151.9,152.5,153.0,153.6,154.2,154.9,155.6,156.4,157.1,157.9,158.8,159.6,160.5,161.4,162.4,163.2,164.2,165.2,166.4,167.4,168.5,169.5,170.6,171.8,173.0,174.1,174.4,110.6,109.2,107.8,106.1,104.5,102.5,100.4,97.9,94.5,88.8,null,null,null,null,null,null,null,null,null,null]}, CUM=GEO.cum, RIGHT=GEO.right;
+var TOP=14, BOT=222;
+
+function asOf(){var p=String(state.updated||"").split("-");if(p.length!==3)return "this week";var m=["January","February","March","April","May","June","July","August","September","October","November","December"];return m[Number(p[1])-1]+" "+Number(p[2])+", "+p[0]}
+function usd(n){return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(n)}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]})}
+function byId(id){for(var i=0;i<R.length;i++)if(R[i].id===id)return R[i];return {name:id,color:"#999"}}
+function fmtDate(d){var p=String(d).split("-");if(p.length!==3)return esc(d);return Number(p[1])+"/"+Number(p[2])}
+
+function totals(){
+  var t={};R.forEach(function(r){t[r.id]={cat:0,ev:0,total:0}});
+  state.sales.forEach(function(s){var x=t[s.r];if(!x)return;if(s.type==="Event")x.ev+=s.amt;else if(s.type!=="Opening")x.cat+=s.amt;x.total+=s.amt});
+  return t;
+}
+function ordered(){return state.sales.slice().sort(function(a,b){if(a.date!==b.date)return a.date<b.date?-1:1;return a.at<b.at?-1:1})}
+function winner(){var c={},l=ordered();for(var i=0;i<l.length;i++){var s=l[i];c[s.r]=(c[s.r]||0)+s.amt;if(c[s.r]>=GOAL)return s.r}return null}
+
+function yAt(f){
+  if(f<=0)return BOT; if(f>=1)return TOP-1;
+  for(var y=CUM.length-1;y>0;y--){if(CUM[y-1]>=f){var a=CUM[y],b=CUM[y-1];return y-(f-a)/(b-a)}}
+  return TOP-1;
+}
+function rightAt(y0,y1){
+  var m=0;for(var y=Math.max(0,Math.floor(y0));y<=Math.min(RIGHT.length-1,Math.ceil(y1));y++){if(RIGHT[y]!=null&&RIGHT[y]>m)m=RIGHT[y]}
+  return m||150;
+}
+function leafSVG(ranked,t){
+  var lv=[];
+  ranked.forEach(function(r){var v=t[r.id].total;if(v>0)lv.push({r:r,v:v,y:yAt(Math.min(v/GOAL,1))})});
+  var bands="",lines="";
+  lv.forEach(function(m){bands+='<rect x="0" y="'+m.y.toFixed(2)+'" width="190" height="'+(BOT-m.y+0.5).toFixed(2)+'" fill="'+m.r.color+'"/>'});
+  lv.forEach(function(m){lines+='<line class="level-line" x1="0" x2="190" y1="'+m.y.toFixed(2)+'" y2="'+m.y.toFixed(2)+'"/>'});
+  var GAP=19,ly=[],n=lv.length,i;
+  for(i=0;i<n;i++)ly[i]=i===0?Math.max(lv[i].y,10):Math.max(lv[i].y,ly[i-1]+GAP);
+  if(n&&ly[n-1]>222){var over=ly[n-1]-222;for(i=0;i<n;i++)ly[i]-=over}
+  var leads="";
+  lv.forEach(function(m,i){
+    var y=ly[i], ax=rightAt(m.y-1,m.y+1)+1.5;
+    leads+='<path class="lead-line" d="M'+ax.toFixed(1)+' '+m.y.toFixed(1)+' L184 '+m.y.toFixed(1)+' L190 '+y.toFixed(1)+' L195 '+y.toFixed(1)+'"/>'+
+      '<circle cx="'+ax.toFixed(1)+'" cy="'+m.y.toFixed(1)+'" r="1.6" class="lead-dot"/>'+
+      '<rect x="197" y="'+(y-3.5).toFixed(1)+'" width="7" height="7" rx="1.5" fill="'+m.r.color+'"/>'+
+      '<text class="lead-name" x="207" y="'+(y-0.4).toFixed(1)+'">'+esc(m.r.name)+'</text>'+
+      '<text class="lead-amt" x="207" y="'+(y+7.6).toFixed(1)+'">'+usd(m.v)+' of '+usd(GOAL)+'</text>';
+  });
+  var tipY=yAt(1), depth=(lv.length?(BOT-lv[0].y):0).toFixed(1);
+  return '<svg class="leaf" viewBox="10 0 272 232" role="img" aria-label="Morning Belle leaf, tip is '+usd(GOAL)+'. '+lv.map(function(m){return m.r.name+' '+usd(m.v)}).join(', ')+'">'+
+    '<defs><clipPath id="leafclip"><path d="'+LEAF+'"/></clipPath></defs>'+
+    '<path class="leaf-empty" d="'+LEAF+'"/>'+
+    '<g clip-path="url(#leafclip)"><g class="bands" style="--d:'+depth+'px">'+bands+lines+'</g></g>'+
+    '<text class="tip-l" x="'+(rightAt(tipY,tipY+3)+6).toFixed(1)+'" y="'+(tipY+4).toFixed(1)+'">'+usd(GOAL)+' wins</text>'+
+    leads+'</svg>';
+}
+
+function render(){
+  var t=totals(),win=winner();
+  var ranked=R.slice().sort(function(a,b){return t[b.id].total-t[a.id].total});
+  var place={},labels=["1st","2nd","3rd","4th"];
+  ranked.forEach(function(r,i){if(t[r.id].total>0)place[r.id]=labels[i]});
+  var combined=0;R.forEach(function(r){combined+=t[r.id].total});
+
+  var html='<div class="wrap"><div class="top"><div>'+
+    '<div class="brand">Morning Belle</div>'+
+    '<h1>The Leaf Race</h1>'+
+    '<p class="lede">Each restaurant’s catering and events sales raise its own level in the leaf. The tip is '+usd(GOAL)+'. First to reach it wins.</p>'+
+    '<p class="combined">'+usd(combined)+'</p>'+
+    '<p class="combined-l">Combined catering and events sales. Standings as of '+asOf()+'.</p>';
+  if(win)html+='<div class="banner" role="status">'+esc(byId(win).name)+' reached '+usd(GOAL)+' first. The race is won.</div>';
+  html+='</div><div class="leafbox">'+leafSVG(ranked,t)+'</div></div>';
+
+  html+='<div class="blocks">';
+  ranked.forEach(function(r){
+    var x=t[r.id],isWin=win===r.id,pct=Math.min(100,x.total/GOAL*100);
+    var togo=isWin?"First to "+usd(GOAL):x.total>=GOAL?"Hit "+usd(GOAL):usd(GOAL-x.total)+" to go";
+    html+='<article class="block c-'+r.id+(isWin?' won':'')+'">'+
+      '<p class="place">'+(place[r.id]||"Not started")+'</p>'+
+      '<h2>'+esc(r.name)+'</h2>'+
+      '<p class="amt">'+usd(x.total)+'</p>'+
+      '<p class="togo">'+togo+'</p>'+
+      '<div class="meter" role="img" aria-label="'+Math.round(pct)+' percent of '+usd(GOAL)+'"><i style="width:'+pct.toFixed(1)+'%"></i></div>'+
+    '</article>';
+  });
+  html+='</div>';
+
+  html+='<section class="ahead" aria-labelledby="aheadh"><h3 id="aheadh">Look ahead</h3><div class="ahead-row">'+
+    '<div class="goal"><p class="goal-m">November goal</p><p class="goal-v">$5,000</p></div>'+
+    '<div class="goal"><p class="goal-m">December goal</p><p class="goal-v">$7,000</p></div>'+
+  '</div><p class="ahead-note">Each restaurant’s catering and events target for the month.</p></section>';
+  html+='</div>';
+  document.getElementById("root").innerHTML=html;
+}
+render();
+})();
+</script>
+</body>
+</html>
